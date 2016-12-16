@@ -11,8 +11,7 @@
   <p>See the source code to see the documentation</p>
 
   <!-- figure out cache buster for js file using document.write -->
-  <script src='js/cinema.js'></script>
-
+  <script src="js/cinema.js"></script>
   <div id='videoPlayer'></div>
 
   <script>
@@ -24,6 +23,7 @@
       aspectRatio: '4/3',
       poster: '',
       source: [
+
       ],
       sourceDownloadPath: {
         path: 'path',
@@ -40,6 +40,7 @@
     }
 
     // intialize video player 
+    var player = cinema('videoPlayer', options);
 
   </script>
 

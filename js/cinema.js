@@ -3,13 +3,12 @@
 // flexibility vs performance? Choose performance for now.
 
 var cinema = function(targetDiv, options){
-
-	var test = 'test';
-
 	var playerSetup = function(targetDiv, options){
 		// helper function to create tags
 		// takes in arrays
 		// check dom at end
+
+		var targetEl = document.getElementById(targetDiv);
 
 		var figureTag = document.createElement('figure');
 		figureTag.id = 'figure';
@@ -25,7 +24,7 @@ var cinema = function(targetDiv, options){
 
 		var sourceTag = document.createElement('source');
 		// add sorting function later
-		source.src = options.source[0];
+		sourceTag.src = options.source[0];
 
 		// add a if for in statement to check download.
 		var aDownloadTag = document.createElement('a');
@@ -38,13 +37,15 @@ var cinema = function(targetDiv, options){
 
 		var playPauseButton = document.createElement('button');
 		playPauseButton.id = 'playpause';
-		playPause.type = 'button';
+		playPauseButton.type = 'button';
 		playPauseButton.setAttribute('data-state', 'play');
+		playPauseButton.innerHTML = 'play/pause';
 
 		var stopButton = document.createElement('button');
-		playPauseButton.id = 'stop';
-		playPause.type = 'button';
-		playPauseButton.setAttribute('data-state', 'stop');
+		stopButton.id = 'stop';
+		stopButton.type = 'button';
+		stopButton.setAttribute('data-state', 'stop');
+		stopButton.innerHTML = 'stop';
 
 		var progressDiv = document.createElement('div');
 		progressDiv.className = 'progress';
@@ -66,7 +67,7 @@ var cinema = function(targetDiv, options){
 		volUpButton.id = 'volUp';
 		volUpButton.type = 'button';
 		volUpButton.setAttribute('data-state', 'volUp');
-		volDownButton.innerHTML = 'Vol+';
+		volUpButton.innerHTML = 'Vol+';
 
 		var volDownButton = document.createElement('button');
 		volDownButton.id = 'volDown';
@@ -83,17 +84,17 @@ var cinema = function(targetDiv, options){
 		var figCaptionTagAnchorTag = document.createElement('a');
 		figCaptionTagAnchorTag.href = options.orglink
 
-		var figCaptionTag = document.createElement(figCaption);
+		var figCaptionTag = document.createElement('FIGCAPTION');
 		figCaptionTag.innerHTML = ' &copy;' + ' ' + options.org + ' | ' + figCaptionTagAnchorTag;
 
-
+		// attach all video player elements to each other
 		figureTag.appendChild(videoTag);
 		videoTag.appendChild(sourceTag);
 		figureTag.appendChild(videoControlsDiv);
-		videoControlsDiv.appendChild(playPauseButton);
-		videoControlsDiv.appendChild(stopButton);
 		videoControlsDiv.appendChild(progressDiv);
 		progressDiv.appendChild(progressBarSpanTag);
+		videoControlsDiv.appendChild(playPauseButton);
+		videoControlsDiv.appendChild(stopButton);
 		videoControlsDiv.appendChild(muteButton);
 		videoControlsDiv.appendChild(volUpButton);
 		videoControlsDiv.appendChild(volDownButton);
@@ -101,16 +102,27 @@ var cinema = function(targetDiv, options){
 		figureTag.appendChild(figCaptionTag);
 		figCaptionTag.appendChild(figCaptionTagAnchorTag);
 
+		// append video player to target element
+		targetEl.appendChild(figureTag);
 
-
-	
-
-
+		// Public API 
+		return {
+			figure: figureTag,
+			video: videoTag,
+			videoControls: videoControlsDiv,
+			playPause: playPauseButton,
+			stop: stopButton,
+			mute: muteButton,
+			volumeUp: volUpButton,
+			volDown: volDownButton,
+			fullScreen: fsButton,
+			progressDiv: progressDiv,
+			progessBar: progressBarSpanTag,
+			figCaption: figCaptionTag
+		}
 	}
 
-	return {
-		test: test
-	}
+	var player = playerSetup(targetDiv, options);
 
 };
 
