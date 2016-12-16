@@ -34,8 +34,7 @@ var cinema = function(targetDiv, options){
 
 		var videoControlsDiv = document.createElement('video-controls');
 		videoControlsDiv.className = 'controls';
-		var videoControlsDivDataState = options.controls ? 'visible' : 'hidden';
-		videoControlsDiv.setAttribute('data-state', videoControlsDivDataState);
+		videoControlsDiv.setAttribute('data-state', options.controls ? 'visible' : 'hidden');
 
 		var playPauseButton = document.createElement('button');
 		playPauseButton.id = 'playpause';
