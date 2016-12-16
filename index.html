@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- link css head here -->
+    <title>Example Page for Open Source HTML5 Player</title>
+  </head>
+  <body>
+
+  <h1>Example Page for Open Source HTML5 Player</h1>
+  <p>See the source code to see the documentation</p>
+
+  <!-- figure out cache buster for js file using document.write -->
+  <script src='/js/ossVideoPlayer.js'></script>
+
+  <div id='videoPlayer'></div>
+
+  <script>
+    
+    var options = {
+      height: 400,
+      width: 300,
+      // either 16/9 or 4/3
+      aspectRatio: '4/3',
+      poster: '',
+      source: [],
+      // 0 to 1
+      volume: 1,
+      autoplay: true,
+      controls: true,
+      preload: 'auto'
+      // ad support coming soon
+    }
+
+    // intialize video player 
+    var player = ossVideoPlayer('videoplayer', options);
+  </script>
+
+
+  </body>
+</html>
