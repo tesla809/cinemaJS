@@ -11,7 +11,7 @@
   <p>See the source code to see the documentation</p>
 
   <!-- figure out cache buster for js file using document.write -->
-  <script src='/js/ossVideoPlayer.js'></script>
+  <script src='js/cinema.js'></script>
 
   <div id='videoPlayer'></div>
 
@@ -25,16 +25,22 @@
       poster: '',
       source: [
       ],
+      sourceDownloadPath: {
+        path: 'path',
+        text: 'Download here'
+      }, 
       // 0 to 1
       volume: 1,
       autoplay: true,
       controls: true,
-      preload: 'auto'
+      preload: 'metadata',
+      organization: 'Blender',
+      orglink: 'http://mango.blender.org'
       // ad support coming soon
     }
 
     // intialize video player 
-    var player = ossVideoPlayer('videoplayer', options);
+
   </script>
 
 

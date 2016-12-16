@@ -34,7 +34,8 @@ var cinema = function(targetDiv, options){
 
 		var videoControlsDiv = document.createElement('video-controls');
 		videoControlsDiv.className = 'controls';
-		videoControlsDiv.setAttribute('data-state', options.controls : 'visible' ? 'hidden');
+		var videoControlsDivDataState = options.controls ? 'visible' : 'hidden';
+		videoControlsDiv.setAttribute('data-state', videoControlsDivDataState);
 
 		var playPauseButton = document.createElement('button');
 		playPauseButton.id = 'playpause';
@@ -100,7 +101,7 @@ var cinema = function(targetDiv, options){
 		videoControlsDiv.appendChild(fsButton);
 		figureTag.appendChild(figCaptionTag);
 		figCaptionTag.appendChild(figCaptionTagAnchorTag);
-		
+
 
 
 	
