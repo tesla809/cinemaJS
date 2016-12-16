@@ -85,7 +85,7 @@ var cinema = function(targetDiv, options){
 		figCaptionTagAnchorTag.href = options.orglink
 
 		var figCaptionTag = document.createElement('FIGCAPTION');
-		figCaptionTag.innerHTML = ' &copy;' + ' ' + options.org + ' | ' + figCaptionTagAnchorTag;
+		figCaptionTag.innerHTML = options.org + ' | ' + figCaptionTagAnchorTag;
 
 		// attach all video player elements to each other
 		figureTag.appendChild(videoTag);
