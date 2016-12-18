@@ -3,6 +3,7 @@
 // flexibility vs performance? Choose performance for now.
 
 var cinema = function(targetDiv, options){
+	// create aspect correction function to get right size of figure if video size specified.
 	var playerSetup = function(targetDiv, options){
 		// helper function to create tags
 		// takes in arrays
@@ -14,6 +15,7 @@ var cinema = function(targetDiv, options){
 		figureTag.preload = options.preload;
 		figureTag.poster = options.poster; 
 		figureTag.setAttribute('data-fullscreen', false);
+		
 
 		var videoTag = document.createElement('video');
 		videoTag.id = 'video';
@@ -123,11 +125,18 @@ var cinema = function(targetDiv, options){
 
 	var player = playerSetup(targetDiv, options);
 
+	var figure = player.figure;
+	var video = player.video;
 	var playPause = player.playPauseButton;
 	var stop = player.stopButton;
 	var mute = player.muteButton;
 	var volumeUp = player.volumeUpButton;
 	var volDown = player.volDownButton;
+	var fullScreen = player.fsButton;
+	var progressDiv = player.progressDiv;
+	var progressBar = player.progressBar;
+	var figCaption = player.figCaption;
 
+	console.log (figure);
 };
 
