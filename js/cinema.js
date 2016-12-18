@@ -6,7 +6,6 @@ var cinema = function(targetDiv, options){
 	var playerSetup = function(targetDiv, options){
 		// helper function to create tags
 		// takes in arrays
-		// check dom at end
 
 		var targetEl = document.getElementById(targetDiv);
 
@@ -123,6 +122,12 @@ var cinema = function(targetDiv, options){
 	}
 
 	var player = playerSetup(targetDiv, options);
+
+	var playPause = player.playPauseButton;
+	var stop = player.stopButton;
+	var mute = player.muteButton;
+	var volumeUp = player.volumeUpButton;
+	var volDown = player.volDownButton;
 
 };
 
