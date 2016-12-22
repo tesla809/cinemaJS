@@ -3,6 +3,7 @@
 // flexibility vs performance? Choose performance for now.
 
 var cinema = function(targetDiv, options){
+	'use strict';
 
 	var playerSetup = function(targetDiv, options){
 		// create aspect correction function to get right size of figure if video size specified.
@@ -152,6 +153,8 @@ var cinema = function(targetDiv, options){
 	var progressDiv = player.progressDiv;
 	var progressBar = player.progressBar;
 	var figCaption = player.figCaption;
+
+
 
 
 	// public API
