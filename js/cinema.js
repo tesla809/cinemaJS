@@ -27,6 +27,7 @@ var cinema = function(targetDiv, options){
 		videoTag.controls = false;
 		videoTag.preload = options.preload;
 		videoTag.poster = options.poster;
+		videoTag.autoplay = options.autoplay;
 
 		var sourceTag = document.createElement('source');
 		// add sorting function later
@@ -164,7 +165,7 @@ var cinema = function(targetDiv, options){
 				console.log(figure);
 			}
 		}
-		
+
 	} else {
 		alert('HTML5 video is not supported on your browser');
 	}
