@@ -135,7 +135,9 @@ var cinema = function(targetDiv, options){
 			stop: stopButton,
 			mute: muteButton,
 			volumeUp: volUpButton,
-			volDown: volDownButton,
+			volumeDown: volDownButton,
+			soundBarContainer: sBarContainerDiv,
+			soundbar: sBarDiv,
 			fullScreen: fsButton,
 			progressDiv: progressDiv,
 			progessBar: progressBarSpanTag,
@@ -152,7 +154,9 @@ var cinema = function(targetDiv, options){
 		var stop = player.stopButton;
 		var mute = player.muteButton;
 		var volumeUp = player.volumeUpButton;
-		var volDown = player.volDownButton;
+		var volumeDown = player.volumeDownButton;
+		var soundBarContainer = player.soundBarContainer;
+		var soundBar = player.soundBar;
 		var fullScreen = player.fsButton;
 		var progressDiv = player.progressDiv;
 		var progressBar = player.progressBar;
@@ -170,6 +174,8 @@ var cinema = function(targetDiv, options){
 		if (!fullScreenEnabled) {
 			fullscreen.style.display = 'none';
 		}
+
+
 
 		// public API
 		return {
