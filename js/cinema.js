@@ -3,10 +3,9 @@
 // flexibility vs performance? Choose performance for now.
 
 var cinema = function(targetDiv, options){
-	// create aspect correction function to get right size of figure if video size specified.
+
 	var playerSetup = function(targetDiv, options){
-		// helper function to create tags
-		// takes in arrays
+		// create aspect correction function to get right size of figure if video size specified.
 
 		var targetEl = document.getElementById(targetDiv);
 
@@ -15,7 +14,9 @@ var cinema = function(targetDiv, options){
 		figureTag.preload = options.preload;
 		figureTag.poster = options.poster; 
 		figureTag.setAttribute('data-fullscreen', false);
-		
+		// for now the figure size will be the size of video untill correction function
+		figureTag.style.maxWidth = options.width;
+		figureTag.style.maxHeight = options.height;
 
 		var videoTag = document.createElement('video');
 		videoTag.id = 'video';
@@ -57,6 +58,11 @@ var cinema = function(targetDiv, options){
 
 		var progressBarSpanTag = document.createElement('span');
 		progressBarSpanTag.id = 'progress-bar';
+		// set time field inside of progress bar
+		progressBarSpanTag.innerHTML = timeFieldDiv;
+
+		var timeFieldDiv = document.createElement('div');
+		timeFieldDiv.id = 'timefield';
 
 		var muteButton = document.createElement('button');
 		muteButton.id = 'mute';
@@ -82,6 +88,13 @@ var cinema = function(targetDiv, options){
 		fsButton.setAttribute('data-state', 'go-fullscreen');
 		fsButton.innerHTML = 'FullScreen';
 
+		var sBarContainerDiv = document.createElement('div');
+		sBarContainerDiv.id = 'sbar-container';
+
+		var sBarDiv = document.createElement('div');
+		sBarDiv.id = 'sbar';
+		sBarDiv.innerHTML = 'soundbar-test';
+
 		var figCaptionTagAnchorTag = document.createElement('a');
 		figCaptionTagAnchorTag.href = options.orglink
 
@@ -99,6 +112,8 @@ var cinema = function(targetDiv, options){
 		videoControlsDiv.appendChild(muteButton);
 		videoControlsDiv.appendChild(volUpButton);
 		videoControlsDiv.appendChild(volDownButton);
+		videoControlsDiv.appendChild(sBarContainerDiv);
+		sBarContainerDiv.appendChild(sBarDiv);
 		videoControlsDiv.appendChild(fsButton);
 		figureTag.appendChild(figCaptionTag);
 		figCaptionTag.appendChild(figCaptionTagAnchorTag);
@@ -122,9 +137,10 @@ var cinema = function(targetDiv, options){
 			figCaption: figCaptionTag
 		}
 	}
-
+	// setup player
 	var player = playerSetup(targetDiv, options);
 
+	// setting up variables for future functionality
 	var figure = player.figure;
 	var video = player.video;
 	var playPause = player.playPauseButton;
@@ -137,6 +153,13 @@ var cinema = function(targetDiv, options){
 	var progressBar = player.progressBar;
 	var figCaption = player.figCaption;
 
-	console.log (figure);
+
+	// public API
+	return {
+		init: function(){
+			console.log(figure);
+		}
+	}
 };
+
 
