@@ -35,7 +35,7 @@
       }, 
       // 0 to 1
       volume: 1,
-      autoplay: true,
+      autoplay: false,
       controls: true,
       preload: 'metadata',
       organization: 'Blender',
@@ -45,6 +45,7 @@
 
     // intialize video player 
     var player = cinema('videoPlayerContainer', options);
+    player.init();
   </script>
 
 
