@@ -4,8 +4,11 @@
 
 var cinema = function(targetDiv, options){
 	'use strict';
+	console.log('cinema.js loaded');
 
-	var playerSetup = function(targetDiv, options){
+	var supportsVideo = !!document.createElement('video').canPlayType;
+	if (supportsVideo) {
+		var playerSetup = function(targetDiv, options){
 		// create aspect correction function to get right size of figure if video size specified.
 
 		var targetEl = document.getElementById(targetDiv);
@@ -153,6 +156,11 @@ var cinema = function(targetDiv, options){
 	var progressDiv = player.progressDiv;
 	var progressBar = player.progressBar;
 	var figCaption = player.figCaption;
+
+
+	} else {
+		alert('HTML5 video is not supported on your browser');
+	}
 
 
 
