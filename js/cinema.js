@@ -61,13 +61,13 @@ var cinema = function(targetDiv, options){
 		progressTag.value = '0';
 		progressTag.min = '0';
 
+		var timeFieldDiv = document.createElement('div');
+		timeFieldDiv.id = 'timefield';
+
 		var progressBarSpanTag = document.createElement('span');
 		progressBarSpanTag.id = 'progress-bar';
 		// set time field inside of progress bar
 		progressBarSpanTag.innerHTML = timeFieldDiv;
-
-		var timeFieldDiv = document.createElement('div');
-		timeFieldDiv.id = 'timefield';
 
 		var muteButton = document.createElement('button');
 		muteButton.id = 'mute';
@@ -141,6 +141,7 @@ var cinema = function(targetDiv, options){
 			fullScreen: fsButton,
 			progressDiv: progressDiv,
 			progessBar: progressBarSpanTag,
+			timefield: timeFieldDiv,
 			figCaption: figCaptionTag
 		}
 	}
@@ -175,6 +176,9 @@ var cinema = function(targetDiv, options){
 			fullscreen.style.display = 'none';
 		}
 
+		var updateSoundBar = function(soundValue){
+			soundBar.style.width = soundValue * 100+"%";
+		}
 
 
 		// public API
