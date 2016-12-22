@@ -141,35 +141,32 @@ var cinema = function(targetDiv, options){
 			figCaption: figCaptionTag
 		}
 	}
-	// setup player
-	var player = playerSetup(targetDiv, options);
+		// setup player
+		var player = playerSetup(targetDiv, options);
 
-	// setting up variables for future functionality
-	var figure = player.figure;
-	var video = player.video;
-	var playPause = player.playPauseButton;
-	var stop = player.stopButton;
-	var mute = player.muteButton;
-	var volumeUp = player.volumeUpButton;
-	var volDown = player.volDownButton;
-	var fullScreen = player.fsButton;
-	var progressDiv = player.progressDiv;
-	var progressBar = player.progressBar;
-	var figCaption = player.figCaption;
+		// setting up variables for future functionality
+		var figure = player.figure;
+		var video = player.video;
+		var playPause = player.playPauseButton;
+		var stop = player.stopButton;
+		var mute = player.muteButton;
+		var volumeUp = player.volumeUpButton;
+		var volDown = player.volDownButton;
+		var fullScreen = player.fsButton;
+		var progressDiv = player.progressDiv;
+		var progressBar = player.progressBar;
+		var figCaption = player.figCaption;
 
 
+		// public API
+		return {
+			init: function(){
+				console.log(figure);
+			}
+		}
+		
 	} else {
 		alert('HTML5 video is not supported on your browser');
-	}
-
-
-
-
-	// public API
-	return {
-		init: function(){
-			console.log(figure);
-		}
 	}
 };
 
