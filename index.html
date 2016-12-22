@@ -11,8 +11,10 @@
   <p>See the source code to see the documentation</p>
 
   <!-- figure out cache buster for js file using document.write -->
+  <div id='videoPlayerContainer'></div>
   <script src="js/cinema.js"></script>
-  <div id='videoPlayer'></div>
+  
+ 
 
   <script>
     
@@ -23,7 +25,9 @@
       aspectRatio: '4/3',
       poster: '',
       source: [
-
+        'video/Rick_and_Morty_inter_dimensional_cable.mp4',
+        'video/Rick_and_Morty_inter_dimensional_cable.ogg',
+        'Rick_and_Morty_inter_dimensional_cable.webm'
       ],
       sourceDownloadPath: {
         path: 'path',
@@ -40,8 +44,7 @@
     }
 
     // intialize video player 
-    var player = cinema('videoPlayer', options);
-
+    var player = cinema('videoPlayerContainer', options);
   </script>
 
 
