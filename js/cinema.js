@@ -158,6 +158,18 @@ var cinema = function(targetDiv, options){
 		var progressBar = player.progressBar;
 		var figCaption = player.figCaption;
 
+		// setup functionality via functions
+
+		// If the browser does not support progress element, set its state for some other styling
+		var supportsProgress = (document.createElement('progress').max !== undefined);
+		if (!supportsProgress) progress.setAttribute('data-state', 'fake');
+		// Check if browser supports the Fullscreen API
+		var fullScreenEnabled = !!(document.fullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitSupportsFullscreen || document.webkitFullscreenEnabled || document.createElement('video').webkitRequestFullScreen);
+		
+		// If the browser does not support the Fulscreen API, then hide the fullscreen button
+		if (!fullScreenEnabled) {
+			fullscreen.style.display = 'none';
+		}
 
 		// public API
 		return {
