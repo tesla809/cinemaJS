@@ -296,6 +296,11 @@ var cinema = function(targetDiv, options){
 		}
 
 
+		// Event listeners 
+		// React to the user clicking within the progress bar
+		progress.addEventListener('click', progressBarClick);
+
+
 		// public API
 		return {
 			init: function(){
