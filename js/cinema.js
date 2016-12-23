@@ -290,6 +290,11 @@ var cinema = function(targetDiv, options){
 			}
 		}
 
+		var progressBarClick = function(e){
+			var postion = (e.pageX  - (this.offsetLeft + this.offsetParent.offsetLeft)) / this.offsetWidth;
+			video.currentTime = position * video.duration;
+		}
+
 
 		// public API
 		return {
