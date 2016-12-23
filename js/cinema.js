@@ -207,16 +207,16 @@ var cinema = function(targetDiv, options){
 					if (video.volume < 1){
 						video.volume = video.volume + percentageSkip;
 						video.volume = roundToTenth(video.volume);
-						console.log(video.volume);
 						updateSoundBar(video.volume);
+						console.log(video.volume);
 					}
 				}
 				if (e.keyCode === 40 || e.key === "ArrowDown" || e === '-'){
 					if (video.volume > 0){
 						video.volume = video.volume - percentageSkip;
 						video.volume = roundToTenth(video.volume);
-						console.log(video.volume);
 						updateSoundBar(video.volume);
+						console.log(video.volume);
 					}
 				}
 				// if video.volume is equal to zero, change the icon. video.muted is set to true, 
@@ -226,6 +226,11 @@ var cinema = function(targetDiv, options){
 				} else video.muted = false;
 			}
 				changeButtonState('mute');
+		}
+
+		// Change the volume
+		var alterVolume = function(direction) {
+			volumeControlButton(direction);
 		}
 
 		// public API
