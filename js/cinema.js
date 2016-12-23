@@ -185,6 +185,11 @@ var cinema = function(targetDiv, options){
 			return Math.round(number*10)/10;
 		}
 
+		var volumeCornerCase = function(v){
+			if (video.volume < 0.1) video.volume = 0.1;
+			if (video.volume > 0.9 && video.volume < 1) video.volume = 0.9;
+		}
+
 
 		// public API
 		return {
