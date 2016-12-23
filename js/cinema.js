@@ -298,7 +298,8 @@ var cinema = function(targetDiv, options){
 
 		// Event listeners 
 		// React to the user clicking within the progress bar
-		progress.addEventListener('click', progressBarClick);
+		// check if its progressDiv or progressBar
+		progressDiv.addEventListener('click', progressBarClick);
 
 
 		// public API
