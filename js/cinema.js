@@ -8,6 +8,19 @@ var cinema = function(targetDiv, options){
 
 	var supportsVideo = !!document.createElement('video').canPlayType;
 	if (supportsVideo) {
+		
+		// first iteration of loadCSS
+		var loadCSS = function(){
+			var location = 'css/style.css';
+			// var cssLocation = '../css/optiShinyPlayer-style.css';
+			var head = document.getElementsByTagName('head')[0];
+			var cinemaJSCSSLink = document.createElement('link');
+			cinemaJSCSSLink.rel = 'stylesheet';
+			cinemaJSCSSLink.async = true;
+			cinemaJSCSSLink.href = location;
+			head.appendChild(cinemaJSCSSLink);
+		}();
+
 		var playerSetup = function(targetDiv, options){
 		// create aspect correction function to get right size of figure if video size specified.
 
