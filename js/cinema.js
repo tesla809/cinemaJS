@@ -281,6 +281,15 @@ var cinema = function(targetDiv, options){
 			}
 		};
 
+		var videoToggle = function(e) {
+			if (e.keyCode === 37 || e.keyCode === "LeftArrow") {
+				video.currentTime = video.currentTime - 5;
+			}
+			else if (e.keyCode === 39  || e.keyCode === "RightArrow") {
+				video.currentTime = video.currentTime + 5;
+			}
+		}
+
 
 		// public API
 		return {
