@@ -240,6 +240,48 @@ var cinema = function(targetDiv, options){
 			fullscreen.setAttribute('data-state', !!state ? 'cancel-fullscreen' : 'go-fullscreen');
 		};
 
+		// Checks if the document is currently in fullscreen mode
+		var isFullScreen = function() {
+			return !!(document.fullScreen || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement || document.fullscreenElement);
+		};
+
+		var handleFullscreen = function() {
+		// If fullscreen mode is active...	
+		if (isFullScreen()) {
+				// ...exit fullscreen mode
+				// (Note: this can only be called on document)
+				if (document.exitFullscreen) document.exitFullscreen();
+				else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+				else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
+				else if (document.msExitFullscreen) document.msExitFullscreen();
+				setFullscreenData(false);
+			}
+			else {
+				// ...otherwise enter fullscreen mode
+				// (Note: can be called on document, but here the specific element is used as it will also ensure that the element's children, e.g. the custom controls, go fullscreen also)
+				if (videoContainer.requestFullscreen) videoContainer.requestFullscreen();
+				else if (videoContainer.mozRequestFullScreen) videoContainer.mozRequestFullScreen();
+				else if (videoContainer.webkitRequestFullScreen) {
+					// Safari 5.1 only allows proper fullscreen on the video element. This also works fine on other WebKit browsers as the following CSS (set in styles.css) hides the default controls that appear again, and 
+					// ensures that our custom controls are visible:
+					// figure[data-fullscreen=true] video::-webkit-media-controls { display:none !important; }
+					// figure[data-fullscreen=true] .controls { z-index:2147483647; }
+					video.webkitRequestFullScreen();
+				}
+				else if (videoContainer.msRequestFullscreen) videoContainer.msRequestFullscreen();
+				setFullscreenData(true);
+			}
+		};
+
+		var playPauseVideo = function(e){
+			if (video.paused || video.ended) {
+				video.play();
+			} else{
+				video.pause();
+			}
+		};
+
+
 		// public API
 		return {
 			init: function(){
