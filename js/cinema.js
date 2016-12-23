@@ -179,9 +179,11 @@ var cinema = function(targetDiv, options){
 
 		var updateSoundBar = function(soundValue){
 			soundBar.style.width = soundValue * 100+"%";
+		};
+
+		var roundToTenth = function(number){
+			return Math.round(number*10)/10;
 		}
-
-
 
 
 		// public API
