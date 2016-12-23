@@ -198,6 +198,35 @@ var cinema = function(targetDiv, options){
 			console.log('position:' + video.volume);
 		};
 
+		var volumeControlButton = function(e){
+			if(e){
+				var percentageSkip = 0.1;
+				volumeCornerCase();
+				// can raise w/ up, +, = keys or lower volume with down, -, _ keys
+				if (e.keyCode === 38 || e.key === "ArrowUp" || e === '+'){
+					if (video.volume < 1){
+						video.volume = video.volume + percentageSkip;
+						video.volume = roundToTenth(video.volume);
+						console.log(video.volume);
+						updateSoundBar(video.volume);
+					}
+				}
+				if (e.keyCode === 40 || e.key === "ArrowDown" || e === '-'){
+					if (video.volume > 0){
+						video.volume = video.volume - percentageSkip;
+						video.volume = roundToTenth(video.volume);
+						console.log(video.volume);
+						updateSoundBar(video.volume);
+					}
+				}
+				// if video.volume is equal to zero, change the icon. video.muted is set to true, 
+				// then passed to changeButtonState function which then uses the ternary function to change the icon.
+				if (video.volume === 0){
+					video.muted = true;
+				} else video.muted = false;
+			}
+				changeButtonState('mute');
+		}
 
 		// public API
 		return {
