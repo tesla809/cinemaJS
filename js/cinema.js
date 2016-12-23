@@ -73,6 +73,8 @@ var cinema = function(targetDiv, options){
 		var progressTag = document.createElement('progress');
 		progressTag.value = '0';
 		progressTag.min = '0';
+		// originally id = progress
+		progressTag.id = 'progress-tag';	
 
 		var timeFieldDiv = document.createElement('div');
 		timeFieldDiv.id = 'timefield';
@@ -80,7 +82,6 @@ var cinema = function(targetDiv, options){
 
 		var progressBarSpanTag = document.createElement('span');
 		progressBarSpanTag.id = 'progress-bar';
-
 
 		var muteButton = document.createElement('button');
 		muteButton.id = 'mute';
