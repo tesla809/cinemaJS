@@ -76,11 +76,11 @@ var cinema = function(targetDiv, options){
 
 		var timeFieldDiv = document.createElement('div');
 		timeFieldDiv.id = 'timefield';
+		timeFieldDiv.innerHTML = '0:00';
 
 		var progressBarSpanTag = document.createElement('span');
 		progressBarSpanTag.id = 'progress-bar';
-		// set time field inside of progress bar
-		progressBarSpanTag.innerHTML = timeFieldDiv;
+
 
 		var muteButton = document.createElement('button');
 		muteButton.id = 'mute';
@@ -124,6 +124,7 @@ var cinema = function(targetDiv, options){
 		figureTag.appendChild(videoControlsDiv);
 		videoControlsDiv.appendChild(progressDiv);
 		progressDiv.appendChild(progressBarSpanTag);
+		videoControlsDiv.appendChild(timeFieldDiv);
 		videoControlsDiv.appendChild(playPauseButton);
 		videoControlsDiv.appendChild(stopButton);
 		videoControlsDiv.appendChild(muteButton);
