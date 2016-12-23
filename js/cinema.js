@@ -157,6 +157,7 @@ var cinema = function(targetDiv, options){
 		var volumeUp = player.volumeUpButton;
 		var volumeDown = player.volumeDownButton;
 		var soundBarContainer = player.soundBarContainer;
+		var timefield = player.timefield;
 		var soundBar = player.soundBar;
 		var fullScreen = player.fsButton;
 		var progressDiv = player.progressDiv;
@@ -179,6 +180,8 @@ var cinema = function(targetDiv, options){
 		var updateSoundBar = function(soundValue){
 			soundBar.style.width = soundValue * 100+"%";
 		}
+
+
 
 
 		// public API
