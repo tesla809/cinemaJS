@@ -157,8 +157,8 @@ var cinema = function(targetDiv, options){
 		var volumeUp = player.volumeUpButton;
 		var volumeDown = player.volumeDownButton;
 		var soundBarContainer = player.soundBarContainer;
-		var timefield = player.timefield;
 		var soundBar = player.soundBar;
+		var timefield = player.timefield;
 		var fullScreen = player.fsButton;
 		var progressDiv = player.progressDiv;
 		var progressBar = player.progressBar;
@@ -183,12 +183,20 @@ var cinema = function(targetDiv, options){
 
 		var roundToTenth = function(number){
 			return Math.round(number*10)/10;
-		}
+		};
 
 		var volumeCornerCase = function(v){
 			if (video.volume < 0.1) video.volume = 0.1;
 			if (video.volume > 0.9 && video.volume < 1) video.volume = 0.9;
-		}
+		};
+
+		// change volume with the soundBar
+		var changeVolume = function(e) {
+			var position = (e.pageX  - (this.offsetLeft + this.offsetParent.offsetLeft))/this.offsetWidth;
+			video.volume = position;
+			soundBar.style.width = position * 100 + "%";
+			console.log('position:' + video.volume);
+		};
 
 
 		// public API
