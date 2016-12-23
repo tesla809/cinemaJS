@@ -226,12 +226,19 @@ var cinema = function(targetDiv, options){
 				} else video.muted = false;
 			}
 				changeButtonState('mute');
-		}
+		};
 
 		// Change the volume
 		var alterVolume = function(direction) {
 			volumeControlButton(direction);
-		}
+		};
+
+		// Set the video container's fullscreen state
+		var setFullscreenData = function(state) {
+			videoContainer.setAttribute('data-fullscreen', !!state);
+			// Set the fullscreen button's 'data-state' which allows the correct button image to be set via CSS
+			fullscreen.setAttribute('data-state', !!state ? 'cancel-fullscreen' : 'go-fullscreen');
+		};
 
 		// public API
 		return {
