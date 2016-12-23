@@ -8,7 +8,7 @@ var cinema = function(targetDiv, options){
 
 	var supportsVideo = !!document.createElement('video').canPlayType;
 	if (supportsVideo) {
-		
+
 		// first iteration of loadCSS
 		var loadCSS = function(){
 			var location = 'css/style.css';
@@ -111,7 +111,6 @@ var cinema = function(targetDiv, options){
 
 		var sBarDiv = document.createElement('div');
 		sBarDiv.id = 'sbar';
-		sBarDiv.innerHTML = 'soundbar-test';
 
 		var figCaptionTagAnchorTag = document.createElement('a');
 		figCaptionTagAnchorTag.href = options.orglink
