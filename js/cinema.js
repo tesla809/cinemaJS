@@ -309,6 +309,14 @@ var cinema = function(targetDiv, options){
 			video.currentTime = position * video.duration;
 		}
 
+		var timeFieldUpdate = function(){
+			// For mobile browsers, ensure that the progress element's max attribute is set
+			if (!progress.getAttribute('max')) progress.setAttribute('max', video.duration);
+			progress.value = video.currentTime;
+			progressBar.style.width = Math.floor((video.currentTime / video.duration) * 100) + '%';
+			timefield.innerHTML = formattedTimeField();
+		};
+
 
 		// Event listeners 
 		// React to the user clicking within the progress bar
