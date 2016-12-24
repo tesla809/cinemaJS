@@ -295,6 +295,19 @@ var cinema = function(targetDiv, options){
 			}
 		};
 
+		// The Media API has no 'stop()' function, so pause the video and reset its time and the progress bar
+		// reload video- fn doesn't hoist for some reason.
+		// check this comment out.
+		var stopVideo = function(){
+			if (video.play){
+				video.pause();
+				video.currentTime = 0;
+				progress.value = 0;
+			}
+			// Update the play/pause button's 'data-state' which allows the correct button image to be set via CSS
+			changeButtonState('playpause');
+		}
+
 		var videoToggle = function(e) {
 			if (e.keyCode === 37 || e.keyCode === "LeftArrow") {
 				video.currentTime = video.currentTime - 5;
