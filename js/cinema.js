@@ -345,6 +345,29 @@ var cinema = function(targetDiv, options){
 			return minutes + ":" + seconds + "/" + totalMinutes + ":" + totalSeconds;
 		}
 
+		// Changes the button state of certain button's so the correct visuals can be displayed with CSS
+		var changeButtonState = function(type) {				
+			// Play/Pause button
+			if (type == 'playpause') {
+				if (video.paused || video.ended) {
+					playpause.setAttribute('data-state', 'play');
+				}
+				else {
+					playpause.setAttribute('data-state', 'pause');
+				}
+			}
+			// Mute button
+			if (type == 'mute') {
+				mute.setAttribute('data-state', video.muted ? 'unmute' : 'mute');
+				var isMute = document.getElementById("mute").attributes['data-state'];
+				if (video.muted){
+					sbar.style.display = 'none';
+				} else {
+					sbar.style.display = 'block';
+				}
+			}
+		}
+
 
 		// Event listeners 
 		// React to the user clicking within the progress bar
