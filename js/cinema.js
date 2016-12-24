@@ -317,6 +317,21 @@ var cinema = function(targetDiv, options){
 			timefield.innerHTML = formattedTimeField();
 		};
 
+		//As the video is playing, update the timefield
+		var formattedTimeField = function() {
+			var seconds = Math.round(video.currentTime);
+			var minutes = Math.floor(video.currentTime/60);
+			if (minutes > 0) seconds -= minutes*60;
+			if (seconds.toString().length === 1) seconds = '0' + seconds;  
+
+			var totalSeconds = Math.round(video.duration);
+			var totalMinutes = Math.floor(video.duration/60);
+			if(totalMinutes > 0) totalSeconds -= totalMinutes*60;
+			if(totalSeconds.toString().length === 1) totalSeconds = '0' + totalSeconds;
+
+			return minutes + ":" + seconds + "/" + totalMinutes + ":" + totalSeconds;
+		}
+
 
 		// Event listeners 
 		// React to the user clicking within the progress bar
