@@ -405,6 +405,9 @@ var cinema = function(targetDiv, options){
 		// Wait for the video's meta data to be loaded, then set the progress bar's max value to the duration of the video
 		video.addEventListener('loadedmetadata', loadMetaData);
 
+		//Add Key Event for Fullscreen
+		document.addEventListener('keydown', fullScreenKeyPress);
+
 		// React to the user clicking within the progress bar
 		// check if its progressDiv or progressBar
 		progressDiv.addEventListener('click', progressBarClick);
