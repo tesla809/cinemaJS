@@ -9,6 +9,7 @@ var cinema = function(targetDiv, options){
 	var supportsVideo = !!document.createElement('video').canPlayType;
 	if (supportsVideo) {
 
+		// load css within function parameter
 		// first iteration of loadCSS
 		var loadCSS = function(){
 			var location = 'css/style.css';
@@ -367,6 +368,20 @@ var cinema = function(targetDiv, options){
 				}
 			}
 		}
+
+		var playPauseKeyPress = function(e){
+			// on 'p' key press
+			if (e.keyCode === 80) {
+				if (video.paused || video.ended) {
+					playPauseVideo();
+				}
+				else {
+					playPauseVideo();
+				}	
+			}
+		};
+
+		
 
 
 		// Event listeners 
