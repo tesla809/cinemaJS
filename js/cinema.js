@@ -414,9 +414,9 @@ var cinema = function(targetDiv, options){
 		// button functionality
 		stop.addEventListener('click', stopVideo);
 		mute.addEventListener('click', muteVideo);
-		volinc.addEventListener('click', alterVolumeUp);
-		voldec.addEventListener('click', alterVolumeDown);
-		fs.addEventListener('click', handleFullscreen);
+		volumeUp.addEventListener('click', alterVolumeUp);
+		volumeDown.addEventListener('click', alterVolumeDown);
+		fullScreen.addEventListener('click', handleFullscreen);
 
 		// update the progress bar as video plays
 		video.addEventListener('timeupdate', timeFieldUpdate);
@@ -424,6 +424,9 @@ var cinema = function(targetDiv, options){
 		// React to the user clicking within the progress bar
 		// check if its progressDiv or progressBar
 		progressDiv.addEventListener('click', progressBarClick);
+
+		// adjust volume with sound bar
+		soundBarContainer.addEventListener('mousedown', changeVolume, false);
 
 
 		// public API
