@@ -402,7 +402,14 @@ var cinema = function(targetDiv, options){
 			progress.setAttribute('max', video.duration);
 			timefield.innerHTML = formattedTimeField();
 			updateSoundBar(video.volume);
-		}
+		};
+
+		var fullScreenKeyPress = function(e){
+			// if 'f' key is pressed
+			if (e.keyCode === 70) {
+				handleFullscreen();
+			}
+		};
 
 
 
