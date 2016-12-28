@@ -418,6 +418,9 @@ var cinema = function(targetDiv, options){
 		voldec.addEventListener('click', alterVolumeDown);
 		fs.addEventListener('click', handleFullscreen);
 
+		// update the progress bar as video plays
+		video.addEventListener('timeupdate', timeFieldUpdate);
+
 		// React to the user clicking within the progress bar
 		// check if its progressDiv or progressBar
 		progressDiv.addEventListener('click', progressBarClick);
