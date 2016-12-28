@@ -431,7 +431,20 @@ var cinema = function(targetDiv, options){
 		// ability to play or pause a video when the video is clicked.
 		video.addEventListener('click', playPauseVideo, false);
 
+		video.addEventListener('click', function(){
+			changeButtonState('playpause');
+		}, false);
+		video.addEventListener('play', function() {
+			changeButtonState('playpause');
+		}, false);
+		video.addEventListener('pause', function() {
+			changeButtonState('playpause');
+		}, false);
+		video.addEventListener('volumechange', function() {
+			volumeControlButton();
+		}, false);
 
+		
 		// public API
 		return {
 			init: function(){
