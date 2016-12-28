@@ -167,13 +167,14 @@ var cinema = function(targetDiv, options){
 		var figure = player.figure;
 		var video = player.video;
 		var playPause = player.playPauseButton;
-		var stop = player.stopButton;
-		var mute = player.muteButton;
-		var volumeUp = player.volumeUpButton;
-		var volumeDown = player.volumeDownButton;
+		var stop = player.stop;
+		var mute = player.mute;
+		var volumeUp = player.volumeUp;
+		var volumeDown = player.volumeDown;
 		var soundBarContainer = player.soundBarContainer;
 		var soundBar = player.soundBar;
 		var timefield = player.timefield;
+		// fixed
 		var fullScreen = player.fullScreen;
 		var progress = player.progressDiv;
 		var progressBar = player.progessBar;
@@ -425,7 +426,7 @@ var cinema = function(targetDiv, options){
 		document.addEventListener('keydown', playPauseKeyPress);	
 
 		// button functionality
-		// stop.addEventListener('click', stopVideo);
+		stop.addEventListener('click', stopVideo);
 		// mute.addEventListener('click', muteVideo);
 		// volumeUp.addEventListener('click', alterVolumeUp);
 		// volumeDown.addEventListener('click', alterVolumeDown);
