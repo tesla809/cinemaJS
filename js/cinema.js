@@ -152,7 +152,7 @@ var cinema = function(targetDiv, options){
 			volumeUp: volUpButton,
 			volumeDown: volDownButton,
 			soundBarContainer: sBarContainerDiv,
-			soundbar: sBarDiv,
+			soundBar: sBarDiv,
 			fullScreen: fsButton,
 			progressDiv: progressDiv,
 			progressBar: progressBarSpanTag,
@@ -174,16 +174,13 @@ var cinema = function(targetDiv, options){
 		var soundBarContainer = player.soundBarContainer;
 		var soundBar = player.soundBar;
 		var timefield = player.timefield;
-		var fullScreen = player.fsButton;
-		var progressDiv = player.progressDiv;
-		var progressBar = player.progressBar;
+		var fullscreen = player.fsButton;
+		var progress = player.progressDiv;
+		var progressBar = player.progessBar;
 		var figCaption = player.figCaption;
 
-		// console.log(progressDiv);
-		console.log(player.progressBar);
 
 		// setup functionality via functions
-
 		// If the browser does not support progress element, set its state for some other styling
 		var supportsProgress = (document.createElement('progress').max !== undefined);
 		if (!supportsProgress) progress.setAttribute('data-state', 'fake');
@@ -365,9 +362,9 @@ var cinema = function(targetDiv, options){
 				mute.setAttribute('data-state', video.muted ? 'unmute' : 'mute');
 				var isMute = document.getElementById("mute").attributes['data-state'];
 				if (video.muted){
-					sbar.style.display = 'none';
+					soundBar.style.display = 'none';
 				} else {
-					sbar.style.display = 'block';
+					sounddBar.style.display = 'block';
 				}
 			}
 		}
@@ -439,7 +436,7 @@ var cinema = function(targetDiv, options){
 
 		// React to the user clicking within the progress bar
 		// check if its progressDiv or progressBar
-		progressDiv.addEventListener('click', progressBarClick);
+		progress.addEventListener('click', progressBarClick);
 
 		// adjust volume with sound bar
 		soundBarContainer.addEventListener('mousedown', changeVolume, false);
