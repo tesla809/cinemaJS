@@ -428,6 +428,9 @@ var cinema = function(targetDiv, options){
 		// adjust volume with sound bar
 		soundBarContainer.addEventListener('mousedown', changeVolume, false);
 
+		// ability to play or pause a video when the video is clicked.
+		video.addEventListener('click', playPauseVideo, false);
+
 
 		// public API
 		return {
