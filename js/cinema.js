@@ -408,6 +408,9 @@ var cinema = function(targetDiv, options){
 		//Add Key Event for Fullscreen
 		document.addEventListener('keydown', fullScreenKeyPress);
 
+		//Add key event for play/pause
+		document.addEventListener('keydown', playPauseKeyPress);	
+
 		// React to the user clicking within the progress bar
 		// check if its progressDiv or progressBar
 		progressDiv.addEventListener('click', progressBarClick);
