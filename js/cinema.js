@@ -250,7 +250,7 @@ var cinema = function(targetDiv, options){
 
 		// Set the video container's fullscreen state
 		var setFullscreenData = function(state) {
-			videoContainer.setAttribute('data-fullscreen', !!state);
+			figure.setAttribute('data-fullscreen', !!state);
 			// Set the fullscreen button's 'data-state' which allows the correct button image to be set via CSS
 			fullScreen.setAttribute('data-state', !!state ? 'cancel-fullscreen' : 'go-fullscreen');
 		};
@@ -274,16 +274,16 @@ var cinema = function(targetDiv, options){
 			else {
 				// ...otherwise enter fullscreen mode
 				// (Note: can be called on document, but here the specific element is used as it will also ensure that the element's children, e.g. the custom controls, go fullscreen also)
-				if (videoContainer.requestFullscreen) videoContainer.requestFullscreen();
-				else if (videoContainer.mozRequestFullScreen) videoContainer.mozRequestFullScreen();
-				else if (videoContainer.webkitRequestFullScreen) {
+				if (figure.requestFullscreen) figure.requestFullscreen();
+				else if (figure.mozRequestFullScreen) figure.mozRequestFullScreen();
+				else if (figure.webkitRequestFullScreen) {
 					// Safari 5.1 only allows proper fullscreen on the video element. This also works fine on other WebKit browsers as the following CSS (set in styles.css) hides the default controls that appear again, and 
 					// ensures that our custom controls are visible:
 					// figure[data-fullscreen=true] video::-webkit-media-controls { display:none !important; }
 					// figure[data-fullscreen=true] .controls { z-index:2147483647; }
 					video.webkitRequestFullScreen();
 				}
-				else if (videoContainer.msRequestFullscreen) videoContainer.msRequestFullscreen();
+				else if (figure.msRequestFullscreen) figure.msRequestFullscreen();
 				setFullscreenData(true);
 			}
 		};
