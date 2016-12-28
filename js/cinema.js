@@ -155,7 +155,7 @@ var cinema = function(targetDiv, options){
 			soundBar: sBarDiv,
 			fullScreen: fsButton,
 			progressDiv: progressDiv,
-			progressBar: progressBarSpanTag,
+			progressBar: progressBar,
 			timefield: timeFieldDiv,
 			figCaption: figCaptionTag
 		}
@@ -176,8 +176,11 @@ var cinema = function(targetDiv, options){
 		var timefield = player.timefield;
 		var fullScreen = player.fullScreen;
 		var progress = player.progressDiv;
-		var progressBar = player.progessBar;
+		var progressBar = player.progressBar;
 		var figCaption = player.figCaption;
+
+		console.log(progress);
+		console.log(progressBar);
 
 
 		// setup functionality via functions
