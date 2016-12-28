@@ -174,7 +174,6 @@ var cinema = function(targetDiv, options){
 		var soundBarContainer = player.soundBarContainer;
 		var soundBar = player.soundBar;
 		var timefield = player.timefield;
-		// fixed
 		var fullScreen = player.fullScreen;
 		var progress = player.progressDiv;
 		var progressBar = player.progessBar;
@@ -365,7 +364,7 @@ var cinema = function(targetDiv, options){
 				if (video.muted){
 					soundBar.style.display = 'none';
 				} else {
-					sounddBar.style.display = 'block';
+					soundBar.style.display = 'block';
 				}
 			}
 		}
