@@ -390,6 +390,14 @@ var cinema = function(targetDiv, options){
 			alterVolume('+');
 		};
 
+		var alterVolumeDown = function(e){
+			alterVolume('-');
+		};
+
+		var handleFullscreenClick = function(e){
+			handleFullscreen();
+		};
+
 
 
 		// Event listeners 
