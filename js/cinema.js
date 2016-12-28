@@ -386,6 +386,9 @@ var cinema = function(targetDiv, options){
 			changeButtonState('mute');
 		};
 
+		var alterVolumeUp = function(e){
+			alterVolume('+');
+		};
 
 
 
