@@ -174,7 +174,7 @@ var cinema = function(targetDiv, options){
 		var soundBarContainer = player.soundBarContainer;
 		var soundBar = player.soundBar;
 		var timefield = player.timefield;
-		var fullscreen = player.fsButton;
+		var fullScreen = player.fullScreen;
 		var progress = player.progressDiv;
 		var progressBar = player.progessBar;
 		var figCaption = player.figCaption;
@@ -189,7 +189,7 @@ var cinema = function(targetDiv, options){
 		
 		// If the browser does not support the Fulscreen API, then hide the fullscreen button
 		if (!fullScreenEnabled) {
-			fullscreen.style.display = 'none';
+			fullScreen.style.display = 'none';
 		}
 
 		var updateSoundBar = function(soundValue){
@@ -252,7 +252,7 @@ var cinema = function(targetDiv, options){
 		var setFullscreenData = function(state) {
 			videoContainer.setAttribute('data-fullscreen', !!state);
 			// Set the fullscreen button's 'data-state' which allows the correct button image to be set via CSS
-			fullscreen.setAttribute('data-state', !!state ? 'cancel-fullscreen' : 'go-fullscreen');
+			fullScreen.setAttribute('data-state', !!state ? 'cancel-fullscreen' : 'go-fullscreen');
 		};
 
 		// Checks if the document is currently in fullscreen mode
@@ -425,10 +425,10 @@ var cinema = function(targetDiv, options){
 		document.addEventListener('keydown', playPauseKeyPress);	
 
 		// button functionality
-		stop.addEventListener('click', stopVideo);
-		mute.addEventListener('click', muteVideo);
-		volumeUp.addEventListener('click', alterVolumeUp);
-		volumeDown.addEventListener('click', alterVolumeDown);
+		// stop.addEventListener('click', stopVideo);
+		// mute.addEventListener('click', muteVideo);
+		// volumeUp.addEventListener('click', alterVolumeUp);
+		// volumeDown.addEventListener('click', alterVolumeDown);
 		fullScreen.addEventListener('click', handleFullscreen);
 
 		// update the progress bar as video plays
