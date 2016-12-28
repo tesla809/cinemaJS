@@ -401,6 +401,10 @@ var cinema = function(targetDiv, options){
 
 
 		// Event listeners 
+
+		// Wait for the video's meta data to be loaded, then set the progress bar's max value to the duration of the video
+		video.addEventListener('loadedmetadata', loadMetaData);
+
 		// React to the user clicking within the progress bar
 		// check if its progressDiv or progressBar
 		progressDiv.addEventListener('click', progressBarClick);
