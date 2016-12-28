@@ -411,6 +411,13 @@ var cinema = function(targetDiv, options){
 		//Add key event for play/pause
 		document.addEventListener('keydown', playPauseKeyPress);	
 
+		// button functionality
+		stop.addEventListener('click', stopVideo);
+		mute.addEventListener('click', muteVideo);
+		volinc.addEventListener('click', alterVolumeUp);
+		voldec.addEventListener('click', alterVolumeDown);
+		fs.addEventListener('click', handleFullscreen);
+
 		// React to the user clicking within the progress bar
 		// check if its progressDiv or progressBar
 		progressDiv.addEventListener('click', progressBarClick);
