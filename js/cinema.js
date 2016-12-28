@@ -398,6 +398,12 @@ var cinema = function(targetDiv, options){
 			handleFullscreen();
 		};
 
+		var loadMetaData = function (){
+			progress.setAttribute('max', video.duration);
+			timefield.innerHTML = formattedTimeField();
+			updateSoundBar(video.volume);
+		}
+
 
 
 		// Event listeners 
@@ -444,7 +450,7 @@ var cinema = function(targetDiv, options){
 			volumeControlButton();
 		}, false);
 
-		
+
 		// public API
 		return {
 			init: function(){
