@@ -381,7 +381,12 @@ var cinema = function(targetDiv, options){
 			}
 		};
 
-		
+		var muteVideo = function(e){
+			video.muted = !video.muted;
+			changeButtonState('mute');
+		};
+
+
 
 
 		// Event listeners 
