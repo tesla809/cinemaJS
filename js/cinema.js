@@ -82,7 +82,7 @@ var cinema = function(targetDiv, options){
 
 			var timeFieldDiv = document.createElement('div');
 			timeFieldDiv.id = 'timefield';
-			timeFieldDiv.innerHTML = '0:00';
+			timeFieldDiv.innerHTML = '0:00/0:00';
 
 			var muteButton = document.createElement('button');
 			muteButton.id = 'mute';
@@ -91,15 +91,15 @@ var cinema = function(targetDiv, options){
 			muteButton.innerHTML = 'Mute/Unmute';
 
 			var volUpButton = document.createElement('button');
-			volUpButton.id = 'volUp';
+			volUpButton.id = 'volup';
 			volUpButton.type = 'button';
-			volUpButton.setAttribute('data-state', 'volUp');
-			volUpButton.innerHTML = 'Vol+';
+			volUpButton.setAttribute('data-state', 'volup');
+			volUpButton.innerHTML = 'Mute/Unmute';
 
 			var volDownButton = document.createElement('button');
-			volDownButton.id = 'volDown';
+			volDownButton.id = 'voldown';
 			volDownButton.type = 'button';
-			volDownButton.setAttribute('data-state', 'volDown');
+			volDownButton.setAttribute('data-state', 'voldown');
 			volDownButton.innerHTML = 'Vol-';
 
 			var fsButton = document.createElement('button');
@@ -130,8 +130,8 @@ var cinema = function(targetDiv, options){
 			videoControlsDiv.appendChild(playPauseButton);
 			videoControlsDiv.appendChild(stopButton);
 			videoControlsDiv.appendChild(muteButton);
-			videoControlsDiv.appendChild(volUpButton);
 			videoControlsDiv.appendChild(volDownButton);
+			videoControlsDiv.appendChild(volUpButton);
 			videoControlsDiv.appendChild(sBarContainerDiv);
 			sBarContainerDiv.appendChild(sBarDiv);
 			videoControlsDiv.appendChild(fsButton);
@@ -412,10 +412,7 @@ var cinema = function(targetDiv, options){
 			}
 		};
 
-
-
-		// Event listeners 
-
+		// Event listenerss
 		// Wait for the video's meta data to be loaded, then set the progress bar's max value to the duration of the video
 		video.addEventListener('loadedmetadata', loadMetaData);
 
@@ -427,9 +424,10 @@ var cinema = function(targetDiv, options){
 
 		// button functionality
 		stop.addEventListener('click', stopVideo);
-		// mute.addEventListener('click', muteVideo);
-		// volumeUp.addEventListener('click', alterVolumeUp);
-		// volumeDown.addEventListener('click', alterVolumeDown);
+		mute.addEventListener('click', muteVideo);
+		// is it flipped?
+		volumeUp.addEventListener('click', alterVolumeUp);
+		volumeDown.addEventListener('click', alterVolumeDown);
 		fullScreen.addEventListener('click', handleFullscreen);
 
 		// update the progress bar as video plays
