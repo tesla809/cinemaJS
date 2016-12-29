@@ -461,6 +461,9 @@ var cinema = function(targetDiv, options){
 		//Add Key Event for Progress Track Forward/Back
 		document.addEventListener('keydown', videoToggle);
 
+		//volume adjust with up or down keys
+		document.addEventListener('keydown', volumeControlButton, false);
+
 
 		// public API
 		return {
