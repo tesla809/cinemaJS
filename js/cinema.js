@@ -455,8 +455,11 @@ var cinema = function(targetDiv, options){
 		video.addEventListener('volumechange', function() {
 			volumeControlButton();
 		}, false);
-		
+
 		playpause.addEventListener('click', playPauseVideo);
+
+		//Add Key Event for Progress Track Forward/Back
+		document.addEventListener('keydown', videoToggle);
 
 
 		// public API
