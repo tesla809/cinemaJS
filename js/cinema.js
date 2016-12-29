@@ -179,10 +179,6 @@ var cinema = function(targetDiv, options){
 		var progressBar = player.progressBar;
 		var figCaption = player.figCaption;
 
-		console.log(progress);
-		console.log(progressBar);
-
-
 		// setup functionality via functions
 		// If the browser does not support progress element, set its state for some other styling
 		var supportsProgress = (document.createElement('progress').max !== undefined);
@@ -459,6 +455,8 @@ var cinema = function(targetDiv, options){
 		video.addEventListener('volumechange', function() {
 			volumeControlButton();
 		}, false);
+		
+		playpause.addEventListener('click', playPauseVideo);
 
 
 		// public API
