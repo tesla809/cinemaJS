@@ -464,6 +464,20 @@ var cinema = function(targetDiv, options){
 		//volume adjust with up or down keys
 		document.addEventListener('keydown', volumeControlButton, false);
 
+		// Listen for fullscreen change events (from other controls, e.g. right clicking on the video itself)
+		document.addEventListener('fullscreenchange', function(e) {
+			setFullscreenData(!!(document.fullScreen || document.fullscreenElement));
+		});
+		document.addEventListener('webkitfullscreenchange', function() {
+			setFullscreenData(!!document.webkitIsFullScreen);
+		});
+		document.addEventListener('mozfullscreenchange', function() {
+			setFullscreenData(!!document.mozFullScreen);
+		});
+		document.addEventListener('msfullscreenchange', function() {
+			setFullscreenData(!!document.msFullscreenElement);
+		});
+		
 
 		// public API
 		return {
