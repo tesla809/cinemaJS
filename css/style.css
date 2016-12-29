@@ -10,7 +10,7 @@ figure {
 	max-height:40.875rem;
 	margin:20px auto;
 	margin:1.25rem auto;
-	background-color: rgba(67,70,70,0.5);
+	background-color: rgba(67,70,70,0.095);
 	border-radius: 2%;
 
 	padding-top: 1%;
@@ -22,7 +22,6 @@ figcaption {
 	display:inline-block;
 	font-size:12px;
 	font-size:0.75rem;
-	background-color: rgba(67,70,70,0.5);
 	margin-left:10px;
 }
 video {
