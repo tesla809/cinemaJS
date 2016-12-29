@@ -23,142 +23,143 @@ var cinema = function(targetDiv, options){
 		}();
 
 		var playerSetup = function(targetDiv, options){
-		// create aspect correction function to get right size of figure if video size specified.
+			// create aspect correction function to get right size of figure if video size specified.
 
-		var targetEl = document.getElementById(targetDiv);
+			var targetEl = document.getElementById(targetDiv);
 
-		var figureTag = document.createElement('figure');
-		figureTag.id = 'figure';
-		figureTag.preload = options.preload;
-		figureTag.poster = options.poster; 
-		figureTag.setAttribute('data-fullscreen', false);
-		// for now the figure size will be the size of video untill correction function
-		figureTag.style.maxWidth = options.width;
-		figureTag.style.maxHeight = options.height;
+			var figureTag = document.createElement('figure');
+			figureTag.id = 'figure';
+			figureTag.preload = options.preload;
+			figureTag.poster = options.poster; 
+			figureTag.setAttribute('data-fullscreen', false);
+			// for now the figure size will be the size of video until correction function
+			figureTag.style.maxWidth = options.width;
+			figureTag.style.maxHeight = options.height;
 
-		var videoTag = document.createElement('video');
-		videoTag.id = 'video';
-		videoTag.controls = false;
-		videoTag.preload = options.preload;
-		videoTag.poster = options.poster;
-		videoTag.autoplay = options.autoplay;
+			var videoTag = document.createElement('video');
+			videoTag.id = 'video';
+			videoTag.controls = false;
+			videoTag.preload = options.preload;
+			videoTag.poster = options.poster;
+			videoTag.autoplay = options.autoplay;
 
-		var sourceTag = document.createElement('source');
-		// add sorting function later
-		sourceTag.src = options.source[0];
+			var sourceTag = document.createElement('source');
+			// add sorting function later
+			sourceTag.src = options.source[0];
 
-		// add a if for in statement to check download.
-		var aDownloadTag = document.createElement('a');
-		aDownloadTag.href = options.source.path;
-		aDownloadTag.innerHTML = options.source.text;
+			// add a if for in statement to check download.
+			var aDownloadTag = document.createElement('a');
+			aDownloadTag.href = options.source.path;
+			aDownloadTag.innerHTML = options.source.text;
 
-		var videoControlsDiv = document.createElement('video-controls');
-		videoControlsDiv.className = 'controls';
-		videoControlsDiv.setAttribute('data-state', options.controls ? 'visible' : 'hidden');
+			var videoControlsDiv = document.createElement('video-controls');
+			videoControlsDiv.className = 'controls';
+			videoControlsDiv.setAttribute('data-state', options.controls ? 'visible' : 'hidden');
 
-		var playPauseButton = document.createElement('button');
-		playPauseButton.id = 'playpause';
-		playPauseButton.type = 'button';
-		playPauseButton.setAttribute('data-state', 'play');
-		playPauseButton.innerHTML = 'play/pause';
+			var playPauseButton = document.createElement('button');
+			playPauseButton.id = 'playpause';
+			playPauseButton.type = 'button';
+			playPauseButton.setAttribute('data-state', 'play');
+			playPauseButton.innerHTML = 'play/pause';
 
-		var stopButton = document.createElement('button');
-		stopButton.id = 'stop';
-		stopButton.type = 'button';
-		stopButton.setAttribute('data-state', 'stop');
-		stopButton.innerHTML = 'stop';
+			var stopButton = document.createElement('button');
+			stopButton.id = 'stop';
+			stopButton.type = 'button';
+			stopButton.setAttribute('data-state', 'stop');
+			stopButton.innerHTML = 'stop';
 
-		var progressDiv = document.createElement('div');
-		progressDiv.className = 'progress';
+			var progressDiv = document.createElement('div');
+			progressDiv.className = 'progress';
 
-		var progressTag = document.createElement('progress');
-		progressTag.value = '0';
-		progressTag.min = '0';
-		// originally id = progress
-		progressTag.id = 'progress-tag';	
+			var progressTag = document.createElement('progress');
+			progressTag.value = '0';
+			progressTag.min = '0';
+			// originally id = progress
+			progressTag.id = 'progress-tag';	
 
-		var timeFieldDiv = document.createElement('div');
-		timeFieldDiv.id = 'timefield';
-		timeFieldDiv.innerHTML = '0:00';
+			var progressBarSpanTag = document.createElement('span');
+			progressBarSpanTag.id = 'progress-bar';
 
-		var progressBarSpanTag = document.createElement('span');
-		progressBarSpanTag.id = 'progress-bar';
+			var timeFieldDiv = document.createElement('div');
+			timeFieldDiv.id = 'timefield';
+			timeFieldDiv.innerHTML = '0:00';
 
-		var muteButton = document.createElement('button');
-		muteButton.id = 'mute';
-		muteButton.type = 'button';
-		muteButton.setAttribute('data-state', 'mute');
-		muteButton.innerHTML = 'Mute/Unmute';
+			var muteButton = document.createElement('button');
+			muteButton.id = 'mute';
+			muteButton.type = 'button';
+			muteButton.setAttribute('data-state', 'mute');
+			muteButton.innerHTML = 'Mute/Unmute';
 
-		var volUpButton = document.createElement('button');
-		volUpButton.id = 'volUp';
-		volUpButton.type = 'button';
-		volUpButton.setAttribute('data-state', 'volUp');
-		volUpButton.innerHTML = 'Vol+';
+			var volUpButton = document.createElement('button');
+			volUpButton.id = 'volUp';
+			volUpButton.type = 'button';
+			volUpButton.setAttribute('data-state', 'volUp');
+			volUpButton.innerHTML = 'Vol+';
 
-		var volDownButton = document.createElement('button');
-		volDownButton.id = 'volDown';
-		volDownButton.type = 'button';
-		volDownButton.setAttribute('data-state', 'volDown');
-		volDownButton.innerHTML = 'Vol-';
+			var volDownButton = document.createElement('button');
+			volDownButton.id = 'volDown';
+			volDownButton.type = 'button';
+			volDownButton.setAttribute('data-state', 'volDown');
+			volDownButton.innerHTML = 'Vol-';
 
-		var fsButton = document.createElement('button');
-		fsButton.id = 'fs';
-		fsButton.type = 'button';
-		fsButton.setAttribute('data-state', 'go-fullscreen');
-		fsButton.innerHTML = 'FullScreen';
+			var fsButton = document.createElement('button');
+			fsButton.id = 'fs';
+			fsButton.type = 'button';
+			fsButton.setAttribute('data-state', 'go-fullscreen');
+			fsButton.innerHTML = 'FullScreen';
 
-		var sBarContainerDiv = document.createElement('div');
-		sBarContainerDiv.id = 'sbar-container';
+			var sBarContainerDiv = document.createElement('div');
+			sBarContainerDiv.id = 'sbar-container';
 
-		var sBarDiv = document.createElement('div');
-		sBarDiv.id = 'sbar';
+			var sBarDiv = document.createElement('div');
+			sBarDiv.id = 'sbar';
 
-		var figCaptionTagAnchorTag = document.createElement('a');
-		figCaptionTagAnchorTag.href = options.orglink
+			var figCaptionTagAnchorTag = document.createElement('a');
+			figCaptionTagAnchorTag.href = options.orglink
 
-		var figCaptionTag = document.createElement('FIGCAPTION');
-		figCaptionTag.innerHTML = options.org + ' | ' + figCaptionTagAnchorTag;
+			var figCaptionTag = document.createElement('FIGCAPTION');
+			figCaptionTag.innerHTML = options.org + ' | ' + figCaptionTagAnchorTag;
 
-		// attach all video player elements to each other
-		figureTag.appendChild(videoTag);
-		videoTag.appendChild(sourceTag);
-		figureTag.appendChild(videoControlsDiv);
-		videoControlsDiv.appendChild(progressDiv);
-		progressDiv.appendChild(progressBarSpanTag);
-		videoControlsDiv.appendChild(timeFieldDiv);
-		videoControlsDiv.appendChild(playPauseButton);
-		videoControlsDiv.appendChild(stopButton);
-		videoControlsDiv.appendChild(muteButton);
-		videoControlsDiv.appendChild(volUpButton);
-		videoControlsDiv.appendChild(volDownButton);
-		videoControlsDiv.appendChild(sBarContainerDiv);
-		sBarContainerDiv.appendChild(sBarDiv);
-		videoControlsDiv.appendChild(fsButton);
-		figureTag.appendChild(figCaptionTag);
-		figCaptionTag.appendChild(figCaptionTagAnchorTag);
+			// attach all video player elements to each other
+			figureTag.appendChild(videoTag);
+			videoTag.appendChild(sourceTag);
+			figureTag.appendChild(videoControlsDiv);
+			videoControlsDiv.appendChild(progressDiv);
+			progressDiv.appendChild(progressBarSpanTag);
+			videoControlsDiv.appendChild(timeFieldDiv);
+			videoControlsDiv.appendChild(playPauseButton);
+			videoControlsDiv.appendChild(stopButton);
+			videoControlsDiv.appendChild(muteButton);
+			videoControlsDiv.appendChild(volUpButton);
+			videoControlsDiv.appendChild(volDownButton);
+			videoControlsDiv.appendChild(sBarContainerDiv);
+			sBarContainerDiv.appendChild(sBarDiv);
+			videoControlsDiv.appendChild(fsButton);
+			figureTag.appendChild(figCaptionTag);
+			figCaptionTag.appendChild(figCaptionTagAnchorTag);
 
-		// append video player to target element
-		targetEl.appendChild(figureTag);
+			// append video player to target element
+			targetEl.appendChild(figureTag);
 
-		// Public API 
-		return {
-			figure: figureTag,
-			video: videoTag,
-			videoControls: videoControlsDiv,
-			playPause: playPauseButton,
-			stop: stopButton,
-			mute: muteButton,
-			volumeUp: volUpButton,
-			volumeDown: volDownButton,
-			soundBarContainer: sBarContainerDiv,
-			soundBar: sBarDiv,
-			fullScreen: fsButton,
-			progressDiv: progressDiv,
-			progressBar: progressBar,
-			timefield: timeFieldDiv,
-			figCaption: figCaptionTag
-		}
+			// Public API 
+			return {
+				figure: figureTag,
+				video: videoTag,
+				videoControls: videoControlsDiv,
+				playPause: playPauseButton,
+				stop: stopButton,
+				mute: muteButton,
+				volumeUp: volUpButton,
+				volumeDown: volDownButton,
+				soundBarContainer: sBarContainerDiv,
+				soundBar: sBarDiv,
+				fullScreen: fsButton,
+				progressDiv: progressDiv,
+				progressTag: progressTag,
+				progressBarSpanTag: progressBarSpanTag,
+				timefield: timeFieldDiv,
+				figCaption: figCaptionTag
+			}
 	}
 		// setup player
 		var player = playerSetup(targetDiv, options);
@@ -176,7 +177,8 @@ var cinema = function(targetDiv, options){
 		var timefield = player.timefield;
 		var fullScreen = player.fullScreen;
 		var progress = player.progressDiv;
-		var progressBar = player.progressBar;
+		var progressBar = player.progressTag;
+		var progressBarSpanTag = player.progressBarSpanTag;
 		var figCaption = player.figCaption;
 
 		// setup functionality via functions
@@ -326,7 +328,7 @@ var cinema = function(targetDiv, options){
 			// For mobile browsers, ensure that the progress element's max attribute is set
 			if (!progress.getAttribute('max')) progress.setAttribute('max', video.duration);
 			progress.value = video.currentTime;
-			progressBar.style.width = Math.floor((video.currentTime / video.duration) * 100) + '%';
+			progressBarSpanTag.style.width = Math.floor((video.currentTime / video.duration) * 100) + '%';
 			timefield.innerHTML = formattedTimeField();
 		};
 
