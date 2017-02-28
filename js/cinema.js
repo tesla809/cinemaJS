@@ -2,32 +2,32 @@
 /* use mozilla open source video functions, then mod using module pattern */
 // flexibility vs performance? Choose performance for now.
 
-var cinema = function(targetDiv, options){
+const cinema = function(targetDiv, options){
 	'use strict';
 	console.log('cinema.js loaded');
 
-	var supportsVideo = !!document.createElement('video').canPlayType;
+	const supportsVideo = !!document.createElement('video').canPlayType;
 	if (supportsVideo) {
 
 		// load css within function parameter
 		// first iteration of loadCSS - fix
-		var loadCSS = function(){
-			var location = 'css/style.css';
-			// var cssLocation = '../css/optiShinyPlayer-style.css';
-			var head = document.getElementsByTagName('head')[0];
-			var cinemaJSCSSLink = document.createElement('link');
+		const loadCSS = function(){
+			const location = 'css/style.css';
+			// const cssLocation = '../css/optiShinyPlayer-style.css';
+			const head = document.getElementsByTagName('head')[0];
+			const cinemaJSCSSLink = document.createElement('link');
 			cinemaJSCSSLink.rel = 'stylesheet';
 			cinemaJSCSSLink.async = true;
 			cinemaJSCSSLink.href = location;
 			head.appendChild(cinemaJSCSSLink);
 		}();
 
-		var playerSetup = function(targetDiv, options){
+		const playerSetup = function(targetDiv, options){
 			// create aspect correction function to get right size of figure if video size specified.
 
-			var targetEl = document.getElementById(targetDiv);
+			const targetEl = document.getElementById(targetDiv);
 
-			var figureTag = document.createElement('figure');
+			const figureTag = document.createElement('figure');
 			figureTag.id = 'figure';
 			figureTag.preload = options.preload;
 			figureTag.poster = options.poster; 
@@ -37,89 +37,89 @@ var cinema = function(targetDiv, options){
 			figureTag.style.maxWidth = options.width;
 			figureTag.style.maxHeight = options.height;
 
-			var videoTag = document.createElement('video');
+			const videoTag = document.createElement('video');
 			videoTag.id = 'video';
 			videoTag.controls = false;
 			videoTag.preload = options.preload;
 			videoTag.poster = options.poster;
 			videoTag.autoplay = options.autoplay;
 
-			var sourceTag = document.createElement('source');
+			const sourceTag = document.createElement('source');
 			// add sorting function later
 			sourceTag.src = options.source[0];
 
 			// add a if for in statement to check download.
-			var aDownloadTag = document.createElement('a');
+			const aDownloadTag = document.createElement('a');
 			aDownloadTag.href = options.source.path;
 			aDownloadTag.textContent = options.source.text;
 
-			var videoControlsDiv = document.createElement('video-controls');
+			const videoControlsDiv = document.createElement('video-controls');
 			videoControlsDiv.className = 'controls';
 			videoControlsDiv.setAttribute('data-state', options.controls ? 'visible' : 'hidden');
 
-			var playPauseButton = document.createElement('button');
+			const playPauseButton = document.createElement('button');
 			playPauseButton.id = 'playpause';
 			playPauseButton.type = 'button';
 			playPauseButton.setAttribute('data-state', 'play');
 			playPauseButton.textContent = 'play/pause';
 
-			var stopButton = document.createElement('button');
+			const stopButton = document.createElement('button');
 			stopButton.id = 'stop';
 			stopButton.type = 'button';
 			stopButton.setAttribute('data-state', 'stop');
 			stopButton.textContent = 'stop';
 
-			var progressDiv = document.createElement('div');
+			const progressDiv = document.createElement('div');
 			progressDiv.className = 'progress';
 
-			var progressTag = document.createElement('progress');
+			const progressTag = document.createElement('progress');
 			progressTag.value = '0';
 			progressTag.min = '0';
 			// originally id = progress
 			progressTag.id = 'progress-tag';	
 
-			var progressBarSpanTag = document.createElement('span');
+			const progressBarSpanTag = document.createElement('span');
 			progressBarSpanTag.id = 'progress-bar';
 
-			var timeFieldDiv = document.createElement('div');
+			const timeFieldDiv = document.createElement('div');
 			timeFieldDiv.id = 'timefield';
 			// was .inner
 			timeFieldDiv.textContent = '0:00/0:00';
 
-			var muteButton = document.createElement('button');
+			const muteButton = document.createElement('button');
 			muteButton.id = 'mute';
 			muteButton.type = 'button';
 			muteButton.setAttribute('data-state', 'mute');
 			muteButton.textContent = 'Mute/Unmute';
 
-			var volUpButton = document.createElement('button');
+			const volUpButton = document.createElement('button');
 			volUpButton.id = 'volup';
 			volUpButton.type = 'button';
 			volUpButton.setAttribute('data-state', 'volup');
 			volUpButton.textContent = 'Mute/Unmute';
 
-			var volDownButton = document.createElement('button');
+			const volDownButton = document.createElement('button');
 			volDownButton.id = 'voldown';
 			volDownButton.type = 'button';
 			volDownButton.setAttribute('data-state', 'voldown');
 			volDownButton.textContent = 'Vol-';
 
-			var fsButton = document.createElement('button');
+			const fsButton = document.createElement('button');
 			fsButton.id = 'fs';
 			fsButton.type = 'button';
 			fsButton.setAttribute('data-state', 'go-fullscreen');
 			fsButton.textContent = 'FullScreen';
 
-			var sBarContainerDiv = document.createElement('div');
+			const sBarContainerDiv = document.createElement('div');
 			sBarContainerDiv.id = 'sbar-container';
 
-			var sBarDiv = document.createElement('div');
+			const sBarDiv = document.createElement('div');
 			sBarDiv.id = 'sbar';
 
-			var figCaptionTagAnchorTag = document.createElement('a');
+			const figCaptionTagAnchorTag = document.createElement('a');
 			figCaptionTagAnchorTag.href = options.orglink
 
-			var figCaptionTag = document.createElement('FIGCAPTION');
+			const figCaptionTag = document.createElement('FIGCAPTION');
 			figCaptionTag.textContent = options.org + ' | ' + figCaptionTagAnchorTag;
 
 			// attach all video player elements to each other
@@ -164,53 +164,53 @@ var cinema = function(targetDiv, options){
 			}
 	}
 		// setup player
-		var player = playerSetup(targetDiv, options);
+		const player = playerSetup(targetDiv, options);
 
 		// setting up variables for future functionality
-		var figure = player.figure;
-		var video = player.video;
-		var playPause = player.playPauseButton;
-		var stop = player.stop;
-		var mute = player.mute;
-		var volumeUp = player.volumeUp;
-		var volumeDown = player.volumeDown;
-		var soundBarContainer = player.soundBarContainer;
-		var soundBar = player.soundBar;
-		var timefield = player.timefield;
-		var fullScreen = player.fullScreen;
-		var progress = player.progressDiv;
-		var progressBar = player.progressTag;
-		var progressBarSpanTag = player.progressBarSpanTag;
-		var figCaption = player.figCaption;
+		const figure = player.figure;
+		const video = player.video;
+		const playPause = player.playPauseButton;
+		const stop = player.stop;
+		const mute = player.mute;
+		const volumeUp = player.volumeUp;
+		const volumeDown = player.volumeDown;
+		const soundBarContainer = player.soundBarContainer;
+		const soundBar = player.soundBar;
+		const timefield = player.timefield;
+		const fullScreen = player.fullScreen;
+		const progress = player.progressDiv;
+		const progressBar = player.progressTag;
+		const progressBarSpanTag = player.progressBarSpanTag;
+		const figCaption = player.figCaption;
 
 		// setup functionality via functions
 		// If the browser does not support progress element, set its state for some other styling
-		var supportsProgress = (document.createElement('progress').max !== undefined);
+		const supportsProgress = (document.createElement('progress').max !== undefined);
 		if (!supportsProgress) progress.setAttribute('data-state', 'fake');
 		// Check if browser supports the Fullscreen API
-		var fullScreenEnabled = !!(document.fullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitSupportsFullscreen || document.webkitFullscreenEnabled || document.createElement('video').webkitRequestFullScreen);
+		const fullScreenEnabled = !!(document.fullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitSupportsFullscreen || document.webkitFullscreenEnabled || document.createElement('video').webkitRequestFullScreen);
 		
 		// If the browser does not support the Fulscreen API, then hide the fullscreen button
 		if (!fullScreenEnabled) {
 			fullScreen.style.display = 'none';
 		}
 
-		var updateSoundBar = function(soundValue){
+		const updateSoundBar = function(soundValue){
 			soundBar.style.width = soundValue * 100+"%";
 		};
 
-		var roundToTenth = function(number){
+		const roundToTenth = function(number){
 			return Math.round(number*10)/10;
 		};
 
-		var volumeCornerCase = function(v){
+		const volumeCornerCase = function(v){
 			if (video.volume < 0.1) video.volume = 0.1;
 			if (video.volume > 0.9 && video.volume < 1) video.volume = 0.9;
 		};
 
 		// change volume with the soundBar
-		var changeVolume = function(e) {
-			var position = (e.pageX  - (this.offsetLeft + this.offsetParent.offsetLeft))/this.offsetWidth;
+		const changeVolume = function(e) {
+			let position = (e.pageX  - (this.offsetLeft + this.offsetParent.offsetLeft))/this.offsetWidth;
 			video.volume = position;
 			soundBar.style.width = position * 100 + "%";
 			console.log('position:' + video.volume);
@@ -218,7 +218,7 @@ var cinema = function(targetDiv, options){
 
 		var volumeControlButton = function(e){
 			if(e){
-				var percentageSkip = 0.1;
+				const percentageSkip = 0.1;
 				volumeCornerCase();
 				// can raise w/ up, +, = keys or lower volume with down, -, _ keys
 				if (e.keyCode === 38 || e.key === "ArrowUp" || e === '+'){
@@ -247,23 +247,23 @@ var cinema = function(targetDiv, options){
 		};
 
 		// Change the volume
-		var alterVolume = function(direction) {
+		const alterVolume = function(direction) {
 			volumeControlButton(direction);
 		};
 
 		// Set the video container's fullscreen state
-		var setFullscreenData = function(state) {
+		const setFullscreenData = function(state) {
 			figure.setAttribute('data-fullscreen', !!state);
 			// Set the fullscreen button's 'data-state' which allows the correct button image to be set via CSS
 			fullScreen.setAttribute('data-state', !!state ? 'cancel-fullscreen' : 'go-fullscreen');
 		};
 
 		// Checks if the document is currently in fullscreen mode
-		var isFullScreen = function() {
+		const isFullScreen = function() {
 			return !!(document.fullScreen || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement || document.fullscreenElement);
 		};
 
-		var handleFullscreen = function() {
+		const handleFullscreen = function() {
 		// If fullscreen mode is active...	
 		if (isFullScreen()) {
 				// exit fullscreen mode
@@ -291,7 +291,7 @@ var cinema = function(targetDiv, options){
 			}
 		};
 
-		var playPauseVideo = function(e){
+		const playPauseVideo = function(e){
 			if (video.paused || video.ended) {
 				video.play();
 			} else{
@@ -300,7 +300,7 @@ var cinema = function(targetDiv, options){
 		};
 
 		// The Media API has no 'stop()' function, so pause the video and reset its time and the progress bar
-		var stopVideo = function(){
+		const stopVideo = function(){
 			if (video.play){
 				video.pause();
 				video.currentTime = 0;
@@ -310,7 +310,7 @@ var cinema = function(targetDiv, options){
 			changeButtonState('playpause');
 		}
 
-		var videoToggle = function(e) {
+		const videoToggle = function(e) {
 			if (e.keyCode === 37 || e.keyCode === "LeftArrow") {
 				video.currentTime = video.currentTime - 5;
 			}
@@ -319,12 +319,12 @@ var cinema = function(targetDiv, options){
 			}
 		}
 
-		var progressBarClick = function(e){
-			var postion = (e.pageX  - (this.offsetLeft + this.offsetParent.offsetLeft)) / this.offsetWidth;
+		const progressBarClick = function(e){
+			let postion = (e.pageX  - (this.offsetLeft + this.offsetParent.offsetLeft)) / this.offsetWidth;
 			video.currentTime = position * video.duration;
 		}
 
-		var timeFieldUpdate = function(){
+		const timeFieldUpdate = function(){
 			// For mobile browsers, ensure that the progress element's max attribute is set
 			if (!progress.getAttribute('max')) progress.setAttribute('max', video.duration);
 			progress.value = video.currentTime;
@@ -333,14 +333,14 @@ var cinema = function(targetDiv, options){
 		};
 
 		//As the video is playing, update the timefield
-		var formattedTimeField = function() {
-			var seconds = Math.round(video.currentTime);
-			var minutes = Math.floor(video.currentTime/60);
+		const formattedTimeField = function() {
+			let seconds = Math.round(video.currentTime);
+			let minutes = Math.floor(video.currentTime/60);
 			if (minutes > 0) seconds -= minutes*60;
 			if (seconds.toString().length === 1) seconds = '0' + seconds;  
 
-			var totalSeconds = Math.round(video.duration);
-			var totalMinutes = Math.floor(video.duration/60);
+			let totalSeconds = Math.round(video.duration);
+			let totalMinutes = Math.floor(video.duration/60);
 			if(totalMinutes > 0) totalSeconds -= totalMinutes*60;
 			if(totalSeconds.toString().length === 1) totalSeconds = '0' + totalSeconds;
 
@@ -348,7 +348,7 @@ var cinema = function(targetDiv, options){
 		}
 
 		// Changes the button state of certain button's so the correct visuals can be displayed with CSS
-		var changeButtonState = function(type) {				
+		const changeButtonState = function(type) {				
 			// Play/Pause button
 			if (type == 'playpause') {
 				if (video.paused || video.ended) {
@@ -361,7 +361,7 @@ var cinema = function(targetDiv, options){
 			// Mute button
 			if (type == 'mute') {
 				mute.setAttribute('data-state', video.muted ? 'unmute' : 'mute');
-				var isMute = document.getElementById("mute").attributes['data-state'];
+				let isMute = document.getElementById("mute").attributes['data-state'];
 				if (video.muted){
 					soundBar.style.display = 'none';
 				} else {
@@ -370,7 +370,7 @@ var cinema = function(targetDiv, options){
 			}
 		}
 
-		var playPauseKeyPress = function(e){
+		const playPauseKeyPress = function(e){
 			// on 'p' key press
 			if (e.keyCode === 80) {
 				if (video.paused || video.ended) {
@@ -382,30 +382,30 @@ var cinema = function(targetDiv, options){
 			}
 		};
 
-		var muteVideo = function(e){
+		const muteVideo = function(e){
 			video.muted = !video.muted;
 			changeButtonState('mute');
 		};
 
-		var alterVolumeUp = function(e){
+		const alterVolumeUp = function(e){
 			alterVolume('+');
 		};
 
-		var alterVolumeDown = function(e){
+		const alterVolumeDown = function(e){
 			alterVolume('-');
 		};
 
-		var handleFullscreenClick = function(e){
+		const handleFullscreenClick = function(e){
 			handleFullscreen();
 		};
 
-		var loadMetaData = function (){
+		const loadMetaData = function (){
 			progress.setAttribute('max', video.duration);
 			timefield.textContent = formattedTimeField();
 			updateSoundBar(video.volume);
 		};
 
-		var fullScreenKeyPress = function(e){
+		const fullScreenKeyPress = function(e){
 			// if 'f' key is pressed
 			if (e.keyCode === 70) {
 				handleFullscreen();
