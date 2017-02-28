@@ -10,7 +10,7 @@ var cinema = function(targetDiv, options){
 	if (supportsVideo) {
 
 		// load css within function parameter
-		// first iteration of loadCSS
+		// first iteration of loadCSS - fix
 		var loadCSS = function(){
 			var location = 'css/style.css';
 			// var cssLocation = '../css/optiShinyPlayer-style.css';
@@ -32,6 +32,7 @@ var cinema = function(targetDiv, options){
 			figureTag.preload = options.preload;
 			figureTag.poster = options.poster; 
 			figureTag.setAttribute('data-fullscreen', false);
+			
 			// for now the figure size will be the size of video until correction function
 			figureTag.style.maxWidth = options.width;
 			figureTag.style.maxHeight = options.height;
@@ -50,7 +51,7 @@ var cinema = function(targetDiv, options){
 			// add a if for in statement to check download.
 			var aDownloadTag = document.createElement('a');
 			aDownloadTag.href = options.source.path;
-			aDownloadTag.innerHTML = options.source.text;
+			aDownloadTag.textContent = options.source.text;
 
 			var videoControlsDiv = document.createElement('video-controls');
 			videoControlsDiv.className = 'controls';
@@ -60,13 +61,13 @@ var cinema = function(targetDiv, options){
 			playPauseButton.id = 'playpause';
 			playPauseButton.type = 'button';
 			playPauseButton.setAttribute('data-state', 'play');
-			playPauseButton.innerHTML = 'play/pause';
+			playPauseButton.textContent = 'play/pause';
 
 			var stopButton = document.createElement('button');
 			stopButton.id = 'stop';
 			stopButton.type = 'button';
 			stopButton.setAttribute('data-state', 'stop');
-			stopButton.innerHTML = 'stop';
+			stopButton.textContent = 'stop';
 
 			var progressDiv = document.createElement('div');
 			progressDiv.className = 'progress';
@@ -82,31 +83,32 @@ var cinema = function(targetDiv, options){
 
 			var timeFieldDiv = document.createElement('div');
 			timeFieldDiv.id = 'timefield';
-			timeFieldDiv.innerHTML = '0:00/0:00';
+			// was .inner
+			timeFieldDiv.textContent = '0:00/0:00';
 
 			var muteButton = document.createElement('button');
 			muteButton.id = 'mute';
 			muteButton.type = 'button';
 			muteButton.setAttribute('data-state', 'mute');
-			muteButton.innerHTML = 'Mute/Unmute';
+			muteButton.textContent = 'Mute/Unmute';
 
 			var volUpButton = document.createElement('button');
 			volUpButton.id = 'volup';
 			volUpButton.type = 'button';
 			volUpButton.setAttribute('data-state', 'volup');
-			volUpButton.innerHTML = 'Mute/Unmute';
+			volUpButton.textContent = 'Mute/Unmute';
 
 			var volDownButton = document.createElement('button');
 			volDownButton.id = 'voldown';
 			volDownButton.type = 'button';
 			volDownButton.setAttribute('data-state', 'voldown');
-			volDownButton.innerHTML = 'Vol-';
+			volDownButton.textContent = 'Vol-';
 
 			var fsButton = document.createElement('button');
 			fsButton.id = 'fs';
 			fsButton.type = 'button';
 			fsButton.setAttribute('data-state', 'go-fullscreen');
-			fsButton.innerHTML = 'FullScreen';
+			fsButton.textContent = 'FullScreen';
 
 			var sBarContainerDiv = document.createElement('div');
 			sBarContainerDiv.id = 'sbar-container';
@@ -118,7 +120,7 @@ var cinema = function(targetDiv, options){
 			figCaptionTagAnchorTag.href = options.orglink
 
 			var figCaptionTag = document.createElement('FIGCAPTION');
-			figCaptionTag.innerHTML = options.org + ' | ' + figCaptionTagAnchorTag;
+			figCaptionTag.textContent = options.org + ' | ' + figCaptionTagAnchorTag;
 
 			// attach all video player elements to each other
 			figureTag.appendChild(videoTag);
@@ -264,7 +266,7 @@ var cinema = function(targetDiv, options){
 		var handleFullscreen = function() {
 		// If fullscreen mode is active...	
 		if (isFullScreen()) {
-				// ...exit fullscreen mode
+				// exit fullscreen mode
 				// (Note: this can only be called on document)
 				if (document.exitFullscreen) document.exitFullscreen();
 				else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
@@ -273,7 +275,7 @@ var cinema = function(targetDiv, options){
 				setFullscreenData(false);
 			}
 			else {
-				// ...otherwise enter fullscreen mode
+				// otherwise enter fullscreen mode
 				// (Note: can be called on document, but here the specific element is used as it will also ensure that the element's children, e.g. the custom controls, go fullscreen also)
 				if (figure.requestFullscreen) figure.requestFullscreen();
 				else if (figure.mozRequestFullScreen) figure.mozRequestFullScreen();
@@ -298,8 +300,6 @@ var cinema = function(targetDiv, options){
 		};
 
 		// The Media API has no 'stop()' function, so pause the video and reset its time and the progress bar
-		// reload video- fn doesn't hoist for some reason.
-		// check this comment out.
 		var stopVideo = function(){
 			if (video.play){
 				video.pause();
@@ -329,7 +329,7 @@ var cinema = function(targetDiv, options){
 			if (!progress.getAttribute('max')) progress.setAttribute('max', video.duration);
 			progress.value = video.currentTime;
 			progressBarSpanTag.style.width = Math.floor((video.currentTime / video.duration) * 100) + '%';
-			timefield.innerHTML = formattedTimeField();
+			timefield.textContent = formattedTimeField();
 		};
 
 		//As the video is playing, update the timefield
@@ -401,7 +401,7 @@ var cinema = function(targetDiv, options){
 
 		var loadMetaData = function (){
 			progress.setAttribute('max', video.duration);
-			timefield.innerHTML = formattedTimeField();
+			timefield.textContent = formattedTimeField();
 			updateSoundBar(video.volume);
 		};
 
@@ -477,7 +477,6 @@ var cinema = function(targetDiv, options){
 		document.addEventListener('msfullscreenchange', function() {
 			setFullscreenData(!!document.msFullscreenElement);
 		});
-		
 
 		// public API
 		return {
